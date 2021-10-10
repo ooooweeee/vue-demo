@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "webpack server --mode production --progress"
+    "serve": "webpack server --mode development --progress"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,16 @@
   },
   "homepage": "https://github.com/ooooweeee/vue-demo#readme",
   "dependencies": {
+    "ant-design-vue": "^2.2.8",
+    "dayjs": "^1.10.7",
     "vue": "^3.2.20"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.8",
     "@vue/compiler-sfc": "^3.2.20",
+    "antd-dayjs-webpack-plugin": "^1.0.6",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
     "css-loader": "^6.4.0",
     "less": "^4.1.2",
     "less-loader": "^10.0.1",
