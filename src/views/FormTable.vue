@@ -1,56 +1,63 @@
 <template>
-  <a-form
-    ref="formRef"
-    :model="formState"
-    :rules="formRules"
-    :label-col="{ span: 4 }"
-    :wrapper-col="{ span: 14 }"
-  >
-    <a-form-item has-feedback label="Account" name="account">
-      <a-input v-model:value="formState.account" autocomplete="off" />
-    </a-form-item>
-    <a-form-item has-feedback label="Password" name="password">
-      <a-input
-        v-model:value="formState.password"
-        type="password"
-        autocomplete="off"
-      />
-    </a-form-item>
-    <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click="onSubmit">Submit</a-button>
-    </a-form-item>
+  <a-form ref="formRef" :model="formState">
+    <a-table :rowKey="'id'" :columns="columns" :data-source="data">
+      <template #remark="{ index }">
+        <a-form-item
+          :name="['remark', index]"
+          :rules="{
+            required: true,
+            validator: validatorRemark,
+            trigger: 'submit'
+          }"
+        >
+          <a-input v-model:value="formState.remark[index]" autocomplete="off" />
+        </a-form-item>
+      </template>
+    </a-table>
+    <a-button type="primary" @click="onSubmit">Submit</a-button>
   </a-form>
 </template>
 
 <script>
 import { defineComponent, reactive, ref, toRaw } from 'vue'
-import { Form, Input, Button } from 'ant-design-vue'
+import { Form, Input, Button, Table } from 'ant-design-vue'
 
 export default defineComponent({
   setup() {
     const formRef = ref()
     const formState = reactive({
-      account: '',
-      password: ''
+      remark: []
     })
-    const formRules = {
-      account: [
-        {
-          required: true,
-          validator: (rule, value) => {
-            return Promise.reject('请填写')
-          },
-          trigger: 'blur'
+
+    const columns = [
+      {
+        title: '描述',
+        dataIndex: 'desc'
+      },
+      {
+        title: '备注',
+        slots: {
+          customRender: 'remark'
         }
-      ],
-      password: [
-        {
-          validator: (rule, value) => {
-            return Promise.resolve()
-          },
-          trigger: 'submit'
-        }
-      ]
+      }
+    ]
+
+    const data = [
+      {
+        id: 0,
+        desc: '成人高考英语'
+      },
+      {
+        id: 1,
+        desc: '高等数学'
+      }
+    ]
+
+    const validatorRemark = (rule, value) => {
+      if (!value) {
+        return Promise.reject('请填写备注')
+      }
+      return Promise.resolve()
     }
 
     const onSubmit = () => {
@@ -67,7 +74,11 @@ export default defineComponent({
     return {
       formRef,
       formState,
-      formRules,
+
+      columns,
+      data,
+
+      validatorRemark,
       onSubmit
     }
   },
@@ -75,7 +86,8 @@ export default defineComponent({
     [Form.name]: Form,
     [Form.Item.name]: Form.Item,
     [Input.name]: Input,
-    [Button.name]: Button
+    [Button.name]: Button,
+    [Table.name]: Table
   }
 })
 </script>
