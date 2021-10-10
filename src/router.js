@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import FormTable from './views/FormTable.vue'
 import Table from './views/Table.vue'
 import Form from './views/Form.vue'
 
@@ -7,6 +8,11 @@ export default createRouter({
   routes: [
     {
       path: '/',
+      name: 'form-table',
+      component: FormTable
+    },
+    {
+      path: '/table',
       name: 'table',
       component: Table
     },
