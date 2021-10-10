@@ -4,6 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 
 module.exports = {
+  devtool: 'source-map',
   module: {
     rules: [
       {
