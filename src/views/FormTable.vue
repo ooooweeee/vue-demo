@@ -5,7 +5,6 @@
         <a-form-item
           :name="['remark', index]"
           :rules="{
-            required: true,
             validator: validatorRemark,
             trigger: 'submit'
           }"
