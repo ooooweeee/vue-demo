@@ -33,7 +33,7 @@
 </template>
 <script>
 import { defineComponent, reactive, ref } from 'vue'
-import { Form, Input, Button } from 'ant-design-vue'
+import { Form, Input, InputNumber, Button } from 'ant-design-vue'
 
 export default defineComponent({
   setup() {
@@ -137,7 +137,9 @@ export default defineComponent({
   components: {
     [Form.name]: Form,
     [Form.Item.name]: Form.Item,
-    [Input.name]: Input
+    [Input.name]: Input,
+    [InputNumber.name]: InputNumber,
+    [Button.name]: Button
   }
 })
 </script>
