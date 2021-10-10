@@ -44,7 +44,7 @@ export default defineComponent({
     const data = [
       {
         id: 0,
-        desc: '成人高考英语'
+        desc: '英语6级'
       },
       {
         id: 1,
