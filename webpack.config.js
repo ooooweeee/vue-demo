@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 
@@ -45,5 +46,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
-  plugins: [new VueLoaderPlugin(), new AntdDayjsWebpackPlugin()]
+  plugins: [
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false
+    }),
+    new VueLoaderPlugin(),
+    new AntdDayjsWebpackPlugin()
+  ]
 }
