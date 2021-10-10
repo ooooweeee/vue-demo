@@ -42,5 +42,8 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    historyApiFallback: true
+  },
   plugins: [new VueLoaderPlugin(), new AntdDayjsWebpackPlugin()]
 }
